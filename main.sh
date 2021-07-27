@@ -3,8 +3,14 @@
 
 echo "Now running"
 python CrossCompiler.py
-echo "Compiling C# code"
-mcs -out:main.exe main.cs
-echo "Running code"
-mono main.exe
-echo "Complete"
+if [ $? -eq 1 ] 
+then
+  echo "Compiling C# code"
+  mcs -out:main.exe main.cs
+  echo "Running code"
+  mono main.exe
+  echo "Complete"
+else
+then
+  echo "Main - An Error Occured In The Cross Compiler"
+fi

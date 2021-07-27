@@ -64,7 +64,7 @@ class MainClass
       int[] m_date = GetDateTime();
       if (m_lastTime != m_date[0])
       {
-        Out(GetRandom() % 100);
+        Out(m_date[0]);
       }
       m_lastTime = m_date[0];
     }

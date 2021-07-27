@@ -1,3 +1,6 @@
+import custom_exceptions as errors
+import sys
+
 # Get the file and read it
 #filename = input("Please enter the name of the file to run: ")
 filename = "HelloWorld"
@@ -38,36 +41,44 @@ for line in lines:
 
 
 # Check the code to make sure all functions and variables are valid
-error = False
 if "*doff" not in filename:
-  if cleanedCode.count("(") != cleanedCode.count(")"):
-    print("\nUnequal number of brackets ()")
-    error = True
-  for i in range(len(lines)):
-    line = lines[i]
-    if "~$" in line:
-      phrasesToCheck = line.split("~$")
-      for phrase in phrasesToCheck:
-        if phrase == "" or "=:" in phrase:
-          continue
-        phrase = phrase.split("$", 1)[0].strip()
-        if phrase not in variableNames:
-          print("\nWarning, found variable name '" + phrase + "' which is not defined")
-          error = True
-    if "#" in line and "<#" not in line:
-      phrasesToCheck = line.split("#")
-      for i in range(1, len(phrasesToCheck)):
-        phrase = phrasesToCheck[i]
-        if phrase == "":
-          continue
-        phrase = phrase.split("(", 1)[0]
-        phrase = phrase.strip()
-        if phrase not in functionNames:
-          print("\nWarning, found function call '" + phrase + "' which is not defined")
-          error = True
-if error:
-  print("\nCompilation paused due to errors, press enter to continue")
-  input()
+  try:
+    # Checks brackets, ie, ensures none are missing
+    openBrackets = cleanedCode.count("(")
+    closedBrackets = cleanedCode.count(")")
+    if openBrackets != closedBrackets:
+      raise errors.unmatchedBrackets(openBrackets, closedBrackets)
+
+    for line in lines:
+      # Checks if variables are valid types
+      if "~$" in line:
+        for phrase in line.split("~$"):
+          if not phrase or "=:" in phrase:
+            continue
+          phrase = phrase.split("$", 1)[0].strip()
+          if phrase not in variableNames:
+            raise errors.unknownVariable(phrase)
+
+      # Checks if methods are valid
+      if "#" in line and "<#" not in line:
+        for phrase in line.split("#"):
+          if not phrase or "=:" in phrase or "~$" in phrase:
+            continue
+          phrase = phrase.split("(", 1)[0].strip()
+          if phrase not in functionNames:
+            raise errors.unknownMethod(phrase)
+
+  except errors.unmatchedBrackets as e:
+    print(e)
+    sys.exit(0)
+
+  except errors.unknownVariable as e:
+    print(e)
+    sys.exit(0)
+
+  except errors.unknownMethod as e:
+    print(e)
+    sys.exit(0)
 
 
 # Convert .mlv2 to C#
@@ -137,3 +148,5 @@ for i in range(len(lines)):
 newFile = open("main.cs", "w")
 newFile.write(generatedCode)
 newFile.close()
+
+sys.exit(1)

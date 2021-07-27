@@ -8,7 +8,7 @@
     ~$list $date = #GetDateTime();
     if ($lastTime != $date[0]) 
     {
-      #Out(#GetRandom() % 100);
+      #Out($date[0]);
     }
     $lastTime = $date[0];
     //if ($lastTime % 5 == 0) { exit; }
@@ -41,3 +41,4 @@
 <#Fifteen() =: ~$int $number>{
   $number = 15;
 }
+

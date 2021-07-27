@@ -11,6 +11,5 @@ then
   mono main.exe
   echo "Complete"
 else
-then
   echo "Main - An Error Occured In The Cross Compiler"
 fi

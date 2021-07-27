@@ -1,0 +1,29 @@
+Two inbuilt variables, numbers and lists of numbers
+Print a number to print its value, print a list to print as a string
+Declare variables and functions to make it better
+; to end piece of code
++ - * / all supported for variables, can be overriden, aswell as print function
+Support for casting variables to another type
+supports assignment, print, if, else, repeat, exit
+{} for variable, function and repeat 
+// comment
+<> to enclose variable or function name
+include to add other files
+# for function declaration, within <>, can pass in variables within the brackets
+$ for variable declaration, within <>
+print is called out
+can get input as a key code for live input, or array of numbers
+~ to create instance of a variable, or call a function that already exists
+=: to return a value. Internally creates the variable at the start of the function then returns at the end
+
+calls main function when program starts
+
+Add comment block ability
+
+Before converting get a list of all functions and custom variable names to make sure all code is valid
+
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/user-defined-conversion-operators
+https://stackoverflow.com/questions/1407689/how-do-i-provide-custom-cast-support-for-my-class
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/operator-overloading
+
+can type *doff to remove variable and function checking (debug off)

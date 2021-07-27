@@ -1,0 +1,43 @@
+<#Main()>{
+  //#Out(#InKey());
+  //~$int $number = 10;  //  '~' create instance '$' of the variable type int 'number' name of variable
+  //$number = 25; //  '$' the variable 'number'
+  //#Out(#Fifteen()); //  '#' the function 'Out'
+  ~$int $lastTime = 0;
+  repeat{
+    ~$list $date = #GetDateTime();
+    if ($lastTime != $date[0]) 
+    {
+      #Out(#GetRandom() % 100);
+    }
+    $lastTime = $date[0];
+    //if ($lastTime % 5 == 0) { exit; }
+  }
+  #TestFunction();
+}
+
+<#TestFunction()>{
+  repeat
+  {
+    #Out(#InKey());
+    //~$list $string = InList();
+    //#Out($string);
+  }
+}
+
+<$Vector>{
+  ~$int $xValue;
+  ~$int $yValue;
+
+  //<#Vector(~$Vector $vector * ~$int $number) =: ~$Vector $newVector>{  //  Definition on how to multiply a vector with an int
+    
+  //}
+
+  //<#Vector(~$Vector $vector) =: ~$int $number>{ //  Definition on how to cast a vector to an int
+
+  //} 
+}
+
+<#Fifteen() =: ~$int $number>{
+  $number = 15;
+}
